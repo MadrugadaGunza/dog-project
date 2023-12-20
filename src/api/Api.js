@@ -1,6 +1,7 @@
 import React from 'react'
 import UserPost from './endpoint/UserPost'
 import TokenPost from './endpoint/TokenPost'
+import PhotoPost from './endpoint/PhotoPost'
 
 const Api = () => {
     return (
@@ -9,6 +10,8 @@ const Api = () => {
             <UserPost />
             <h2>Token Post</h2>
             <TokenPost />
+            <h2>Photo Post</h2>
+            <PhotoPost />
         </div>
     )
 }
