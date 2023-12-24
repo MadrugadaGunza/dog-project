@@ -1,10 +1,19 @@
 import './App.css'
-import Api from './api/Api';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './Pages/Home';
+import Login from './Pages/Login/Login';
 function App() {
   return (
-    <div>
-      <Api />
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route exact path='/' element={<Home />} />
+        <Route exact path='/login/*' element={<Login />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
