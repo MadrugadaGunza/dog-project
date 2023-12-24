@@ -29,7 +29,7 @@ const LoginForm = () => {
             <form onSubmit={handleSubmit}>
                 <Input label="Usuário" type="text" name="username" placeholder="Digite o nome do usuário" />
                 <Input label="Senha" type="password" name="password" placeholder="Digite a senha" />
-                <Button disabled>Enviar</Button>
+                <Button>Enviar</Button>
             </form>
             <Link to='/login/criar'>Cadastros</Link>
         </section>
