@@ -15,17 +15,17 @@
     height: 4rem;
 }
 
-.logo{
+.logo {
     padding: .5rem 0;
 }
 
-.login{
+.login {
     color: #333;
     display: flex;
     align-items: center;
 }
 
-.login::after{
+.login::after {
     content: '';
     display: inline-block;
     width: 14px;
@@ -34,4 +34,9 @@
     margin-left: .5rem;
     position: relative;
     top: -1px;
+}
+
+ul,
+li {
+    list-style: none;
 }
