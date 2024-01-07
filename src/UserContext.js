@@ -1,6 +1,6 @@
 import React from 'react';
 import { GET_USER, POST_TOKEN, TOKEN_VALIDATE_POST } from './api';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const UserContext = React.createContext();
 
