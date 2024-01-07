@@ -11,3 +11,7 @@ body {
 a {
     text-decoration: none;
 }
+.error{
+    color: red;
+    margin: .2rem 0;
+}

@@ -7,7 +7,7 @@ import { UserContext } from '../../UserContext';
 const LoginForm = () => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const { userLogin } = React.useContext(UserContext);
+    const { userLogin, loading, error } = React.useContext(UserContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,12 +22,12 @@ const LoginForm = () => {
                     value={username} onChange={({ target }) => setUsername(target.value)} />
                 <Input label="Senha" type="password" name="password" placeholder="Digite a senha"
                     value={password} onChange={({ target }) => setPassword(target.value)} />
-                <Button>Enviar</Button>
-                {/* {data && <p>{data.nome}</p>} */}
+                {loading ? <Button disabled>Carregando...</Button> : <Button>Enviar</Button>}
+                {error && <p className='error'>{error}</p>}
             </form>
             <Link to='/login/criar'>Cadastros</Link>
         </section>
     )
 }
 
-export default LoginForm
+export default LoginForm;

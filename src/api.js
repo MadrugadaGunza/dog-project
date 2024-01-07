@@ -11,6 +11,16 @@ export const POST_TOKEN = ({ username, password }) => {
     }
 }
 
+export const TOKEN_VALIDATE_POST = (token) => {
+    return {
+        url: URL_API + 'jwt-auth/v1/token/validate',
+        options: {
+            method: 'POST',
+            headers: { Authorization: 'Bearer ' + token, },
+        }
+    }
+}
+
 export const GET_USER = (token) => {
     return {
         url: URL_API + 'api/user',
