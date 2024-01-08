@@ -19,13 +19,12 @@ export const UserStorage = ({ children }) => {
             if (!response.ok) throw new Error('Usuario não existente');
             const { token } = await response.json();
             window.localStorage.setItem('token', token);
+            setLogin(true);
             getUser(token);
-            navigate('/conta')
         } catch (error) {
             setError(error.message);
         } finally {
             setLoading(false);
-            setLogin(true);
         }
     }
 
@@ -38,6 +37,7 @@ export const UserStorage = ({ children }) => {
             const response = await fetch(url, options);
             if (!response.ok) throw new Error('Usuarion inválido');
             const result = await response.json();
+            navigate('/conta');
             setData(result);
         } catch (error) {
             setError(error.message);

@@ -30,3 +30,14 @@ export const GET_USER = (token) => {
         }
     }
 }
+
+export const USER_POST = ({ username, email, password }) => {
+    return {
+        url: URL_API + 'api/user',
+        options: {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', },
+            body: JSON.stringify({ username, email, password }),
+        }
+    }
+}
