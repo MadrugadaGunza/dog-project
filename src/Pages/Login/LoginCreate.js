@@ -2,7 +2,9 @@ import React from 'react'
 
 const LoginCreate = () => {
     return (
-        <div>LoginCreate</div>
+        <div>
+            <h1 className='title'>Cadastrar</h1>
+        </div>
     )
 }
 

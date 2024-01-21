@@ -1,3 +1,8 @@
 .footer .footer_text{
     text-align: center;
+    padding: 2rem 0;
+}
+
+.footer{
+    background: #fb1;
 }

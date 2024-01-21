@@ -1,0 +1,24 @@
+.login{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    min-height: 100vh;
+}
+
+.login::before{
+    content: '';
+    display:  block;
+    background: url('./../../Assets/login.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.forms{
+    max-width: 35rem;
+    padding: 2rem;
+}
+
+@media (max-width: 40rem){
+    .login{
+        grid-template-columns: 1fr;
+    }
+}

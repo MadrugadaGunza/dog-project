@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Spectral:wght@700&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -41,6 +43,7 @@ input {
 
 a {
     text-decoration: none;
+    color: #333;
 }
 
 .container {
@@ -49,21 +52,37 @@ a {
     margin: 0 auto;
 }
 
-.title{
+.title {
     font-family: var(--type-second);
     font-size: 3rem;
+    line-height: 1;
+    margin: 1rem 0;
     z-index: 1;
     position: relative;
 }
 
-.title::after{
+.title::after {
     content: '';
     background: #fb1;
     display: block;
-    width: 2.5rem;
-    height: 2rem;
-    border-radius: .4rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: .2rem;
     position: absolute;
-    bottom: .3rem;
+    bottom: 5px;
+    left: -5px;
     z-index: -1;
+}
+
+.animeLeft {
+    opacity: 0;
+    transform: translateX(-40px);
+    animation: animeLeft .5s ease-in forwards;
+}
+
+@keyframes animeLeft {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
 }
