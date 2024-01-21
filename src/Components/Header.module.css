@@ -1,42 +1,37 @@
-.header {
+.header{
     box-shadow: 0px 1px 1px rgba(0, 0, 0, .1);
     position: fixed;
     width: 100%;
     z-index: 100;
-    background-color: white;
+    background: white;
     top: 0;
 }
 
-.nav {
+.nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .1rem 1.5rem;
     height: 4rem;
 }
 
-.logo {
+.logo{
     padding: .5rem 0;
 }
 
-.login {
+.login{
     color: #333;
     display: flex;
     align-items: center;
 }
 
-.login::after {
+.login::after{
     content: '';
     display: inline-block;
-    width: 14px;
     height: 17px;
-    background: url(../Assets/usuario.svg) no-repeat center center;
+    width: 14px;
+    background: url('./../Assets/usuario.svg') no-repeat center center;
     margin-left: .5rem;
     position: relative;
     top: -1px;
-}
-
-ul,
-li {
-    list-style: none;
+    color: #333;
 }

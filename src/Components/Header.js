@@ -1,6 +1,9 @@
+// styles
+import styles from './Header.module.css';
+// dependencies
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Header.module.css';
+// svg
 import { ReactComponent as Dogs } from './../Assets/dogs.svg';
 import { UserContext } from '../UserContext';
 
@@ -10,28 +13,21 @@ const Header = () => {
 
     return (
         <header className={styles.header}>
-            <nav className={styles.nav}>
-                <Link className={styles.logo} to="/">
-                    <Dogs aria-label='dogs - home' />
+            <nav className={`${styles.nav} container`}>
+                <Link to='/' className={styles.logo} aria-label='Dogs - Home'>
+                    <Dogs />
                 </Link>
+                {
+                    data ? (
 
-                <ul style={{ display: 'flex', textDecoration: 'none' }}>
-                    <li style={{ marginRight: '.5rem' }}>
-                        <Link to="/">Home</Link>
-                    </li>
-                    {
-                        data ? (
-                            <li>
-                                <Link className={styles.login} to="/conta">{data.nome}</Link>
-                                <button onClick={userLogout}>Saír</button>
-                            </li>
-                        ) : (
-                            <li>
-                                <Link className={styles.login} to="/login">Login</Link>
-                            </li>
-                        )
-                    }
-                </ul>
+                        <div>
+                            <Link to='/conta' className={styles.login}>{data.nome}</Link>
+                            <button onClick={userLogout}>Saír</button>
+                        </div>
+                    ) : (
+                        <Link to='/login' className={styles.login}>Login</Link>
+                    )
+                }
             </nav>
         </header>
     )

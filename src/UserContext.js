@@ -1,94 +1,76 @@
-import React from 'react';
-import { GET_USER, POST_TOKEN, TOKEN_VALIDATE_POST } from './api';
+import React from 'react'
+import { TOKEN_POST, TOKEN_VALIDATE_POST, USER_GET } from './api';
 import { useNavigate } from 'react-router-dom';
 
 export const UserContext = React.createContext();
 
 export const UserStorage = ({ children }) => {
     const [data, setData] = React.useState(null);
-    const [login, setLogin] = React.useState(false);
+    const [login, setLogin] = React.useState(null);
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
+
     const navigate = useNavigate();
 
-    const userLogin = async ({ username, password }) => {
+    const userGet = async (token) => {
+        const { url, options } = USER_GET(token);
+        const response = await fetch(url, options);
+        const result = await response.json();
+        setData(result);
+        setLogin(true);
+    }
+
+    const userLogin = async (username, password) => {
         try {
+            setError(null);
             setLoading(true);
-            const { url, options } = POST_TOKEN({ username, password });
+            const { url, options } = TOKEN_POST({ username, password });
             const response = await fetch(url, options);
-            if (!response.ok) throw new Error('Usuario não existente');
+            if (!response.ok) throw new Error(`Erro: usuário inexistente`);
             const { token } = await response.json();
             window.localStorage.setItem('token', token);
-            setLogin(true);
-            getUser(token);
+            await userGet(token);
+            navigate('/conta');
         } catch (error) {
             setError(error.message);
+            setLogin(false);
         } finally {
             setLoading(false);
         }
     }
 
-    const getUser = async (token) => {
-        try {
-            setError(null);
-            setLoading(true);
-            setLogin(false);
-            const { url, options } = GET_USER(token);
-            const response = await fetch(url, options);
-            if (!response.ok) throw new Error('Usuarion inválido');
-            const result = await response.json();
-            navigate('/conta');
-            setData(result);
-        } catch (error) {
-            setError(error.message);
-        }
-        finally {
-            setError(null);
-            setLoading(false);
-            setLogin(true);
-        }
-    }
-
-    const userLogout = React.useCallback(
-        async function () {
-            setData(null);
-            setError(null);
-            setLoading(false);
-            setLogin(false);
-            window.localStorage.removeItem('token');
-            navigate("/login");
-        },
-        [navigate]
-    );
+    const userLogout = React.useCallback(async () => {
+        setData(null);
+        setLogin(false);
+        setError(null);
+        setLoading(false);
+        window.localStorage.removeItem('token');
+        navigate('/login')
+    }, [navigate])
 
     React.useEffect(() => {
-        const autoLogin = async () => {
+        async function autoLogin() {
             const token = window.localStorage.getItem('token');
             if (token) {
                 try {
+                    setError(null);
                     setLoading(true);
-                    setLogin(false);
                     const { url, options } = TOKEN_VALIDATE_POST(token);
                     const response = await fetch(url, options);
                     if (!response.ok) throw new Error('Token inválido');
-                    const result = await response.json();
-                    console.log(result);
-                    await getUser(token);
+                    await userGet(token);
                 } catch (error) {
-                    setError(error.message)
                     userLogout();
                 } finally {
                     setLoading(false);
-                    setLogin(true);
-                    setError(null);
                 }
             }
         }
         autoLogin();
-    }, [userLogout]);
+    }, [userLogout])
 
     return (
-        <UserContext.Provider value={{ userLogin, data, userLogout, loading, error, login }}>
+        <UserContext.Provider value={{ userLogin, userLogout, data, error, login, loading }}>
             {children}
         </UserContext.Provider>
     )
