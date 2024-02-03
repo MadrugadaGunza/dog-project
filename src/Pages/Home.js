@@ -1,8 +1,12 @@
 import React from 'react'
+import { UserContext } from '../UserContext';
 
 const Home = () => {
+    const { data } = React.useContext(UserContext);
     return (
-        <div>Home</div>
+        <div>
+            {data && <h1 className='title'>{data.nome}</h1>}
+        </div>
     )
 }
 

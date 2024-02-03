@@ -2,7 +2,9 @@ import React from 'react'
 
 const LoginPasswordLost = () => {
   return (
-    <div>LoginPasswordLost</div>
+    <div>
+      <h1 className="title">Recuperar Contraseña</h1>
+    </div>
   )
 }
 
