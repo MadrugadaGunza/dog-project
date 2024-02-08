@@ -86,3 +86,7 @@ a {
         transform: initial;
     }
 }
+
+.mainContainer{
+    margin-top: 4rem;
+}

@@ -1,11 +1,10 @@
 import React from 'react'
-import { UserContext } from '../UserContext';
+import Feed from './User/Feed';
 
 const Home = () => {
-    const { data } = React.useContext(UserContext);
     return (
-        <div>
-            {data && <h1 className='title'>{data.nome}</h1>}
+        <div className={`container mainContainer`}>
+            <Feed />
         </div>
     )
 }
