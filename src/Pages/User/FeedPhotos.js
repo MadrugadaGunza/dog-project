@@ -6,14 +6,13 @@ import { PHOTOS_GET } from '../../api';
 import Error from './../../Components/Helper/Error';
 import Loading from '../../Components/Helper/Loading';
 
-const FeedPhotos = () => {
+const FeedPhotos = ({ setModalPhoto }) => {
     const { data, loading, error, request } = useFetch();
 
     React.useEffect(() => {
         async function fetchPhotos() {
-            const { url, options } = PHOTOS_GET({ page: 1, total: 24, user: 0 });
+            const { url, options } = PHOTOS_GET({ page: 1, total: 6, user: 0 });
             const { result } = await request(url, options);
-            console.log(result);
         }
         fetchPhotos();
     }, [request])
@@ -25,7 +24,7 @@ const FeedPhotos = () => {
             <ul className={styles.feed}>
                 {
                     data.map((photo) => (
-                        <FeedPhotosItem key={photo.id} photo={photo} />
+                        <FeedPhotosItem key={photo.id} photo={photo} setModalPhoto={setModalPhoto} />
                     ))
                 }
             </ul>
