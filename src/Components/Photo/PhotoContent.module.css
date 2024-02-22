@@ -1,19 +1,19 @@
 .photo {
     margin: auto;
     height: 32rem;
-    border-radius: .2rem;
+    border-radius: 0.2rem;
     background: white;
     display: grid;
     grid-template-columns: 36rem 20rem;
-    grid-template-rows: 1fr auto 1fr;
+    grid-template-rows: auto 1fr auto;
     overflow: hidden;
     opacity: 0;
-    transform: scale(.8);
-    animation: scaleUp .3s forwards;
+    transform: scale(0.8);
+    animation: scaleUp 0.3s forwards;
 }
 
-@keyframes scaleUp{
-    to{
+@keyframes scaleUp {
+    to {
         opacity: initial;
         transform: initial;
     }
@@ -39,12 +39,13 @@
         max-height: calc(100vh - 4rem);
         grid-template-columns: minmax(20rem, 40rem);
     }
-    .img{
+
+    .img {
         grid-row: 1;
     }
 }
 
-.author{
+.author {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,11 +53,11 @@
     opacity: .5;
 }
 
-.author a:hover{
+.author a:hover {
     text-decoration: underline;
 }
 
-.visualizacoes::before{
+.visualizacoes::before {
     content: '';
     display: inline-block;
     width: 16px;
@@ -65,7 +66,7 @@
     background: url('./../../Assets/visualizacao-black.svg');
 }
 
-.attributes{
+.attributes {
     display: flex;
     font-size: 1.125rem;
     font-weight: bold;
@@ -73,11 +74,11 @@
     margin-bottom: 2rem;
 }
 
-.attributes li{
+.attributes li {
     margin-right: 2rem;
 }
 
-.attributes li::before{
+.attributes li::before {
     content: '';
     display: inline-block;
     height: 20px;
