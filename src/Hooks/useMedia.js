@@ -18,4 +18,4 @@ const useMedia = (media) => {
     return match;
 }
 
-export default useMedia
+export default useMedia;

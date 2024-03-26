@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { UserStorage } from './UserContext';
 // components
 import Header from './Components/Header';
-import Footer from './Components/Footer';
+// import Footer from './Components/Footer';
 import ProtectedRoute from './Components/Helper/ProtectedRoute';
 // pages
 import Home from './Pages/Home';
@@ -23,7 +23,7 @@ function App() {
             <Route exact path='/login/*' element={<Login />} />
             <Route exact path='/conta/*' element={<ProtectedRoute><User /></ProtectedRoute>} />
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </UserStorage>
       </BrowserRouter>
     </div>
