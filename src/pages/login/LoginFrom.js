@@ -1,38 +1,31 @@
+// styles
+import styles from './LoginForm.module.css';
+import stylesBtn from './../../components/form/Button.module.css';
+// dependencies
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../../UserContext';
+// components
 import Input from './../../components/form/Input';
 import Button from './../../components/form/Button';
 import Head from '../../helpers/Head';
-import { TOKEN_POST } from '../../api';
+import Error from '../../helpers/Error';
 
 const LoginFrom = () => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-
-    const [data, setData] = React.useState([]);
-    const [loading, setLoading] = React.useState(false);
+    const { error, loading, userLogin } = React.useContext(UserContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            setLoading(true);
-            const { url, options } = TOKEN_POST({ username, password });
-            const response = await fetch(url, options);
-            const { token } = await response.json();
-            setData(token);
-            console.log(token);
-        } catch (error) {
-            console.log(error.message);
-        } finally {
-            setLoading(false);
-        }
+        userLogin({ username, password })
     }
 
     return (
-        <section>
+        <section className='animeLeft'>
             <Head title='Login' />
             <h1 className='title'>Login</h1>
-            <form onSubmit={handleSubmit}>
+            <form className={styles.form} onSubmit={handleSubmit}>
                 <Input
                     label='Usuário'
                     type='text'
@@ -45,10 +38,15 @@ const LoginFrom = () => {
                     value={password}
                     onChange={({ target }) => setPassword(target.value)}
                 />
-                {loading ? <Button disabled>Entrar</Button> : <Button>Entrar</Button>}
+                {error && <Error error={error} />}
+                {loading ? <Button disabled>Carregando...</Button> : <Button>Entrar</Button>}
             </form>
-            <Link to='/login/criar'>Cadastro</Link>
-            <Link to='/login/perdeu'>Perdeu a senha?</Link>
+            <Link className={styles.perdeu} to='/login/perdeu'>Perdeu a senha?</Link>
+            <div className={styles.cadastro}>
+                <h2 className={styles.subtitle}>Cadastre-se</h2>
+                <p>Ainda não possui conta? Cadastre-se no site</p>
+                <Link className={stylesBtn.button} to='/login/criar'>Cadastro</Link>
+            </div>
         </section>
     )
 }
