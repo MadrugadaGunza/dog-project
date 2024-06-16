@@ -3,8 +3,8 @@ import React from 'react'
 
 const Input = ({ label, name, type, value, onChange }) => {
     return (
-        <div>
-            <label htmlFor={name}>{label}</label>
+        <div className={styles.wrapper}>
+            <label htmlFor={name} className={styles.label}>{label}</label>
             <input
                 className={styles.input}
                 type={type}

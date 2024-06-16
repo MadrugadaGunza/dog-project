@@ -1,3 +1,30 @@
-.input{
+.wrapper {
+    margin-bottom: 1rem;
+}
+
+.input {
     width: 100%;
+    border: 1px solid #eee;
+    display: block;
+    font-size: 1rem;
+    padding: .8rem;
+    border-radius: .4rem;
+    background: #eee;
+    transition: .2s;
+}
+
+.input:hover,
+.input:focus {
+    border-color: #fb1;
+    outline: none;
+    box-shadow: 0 0 0 3px #fea;
+    background: #fff;
+}
+
+.label {
+    display: block;
+    font-size: 1rem;
+    line-height: 1;
+    padding-bottom: .5rem;
+    color: #333;
 }
